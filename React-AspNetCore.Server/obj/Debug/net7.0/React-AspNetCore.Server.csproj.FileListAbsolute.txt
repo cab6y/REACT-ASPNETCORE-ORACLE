@@ -249,3 +249,11 @@ C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debu
 C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\obj\Debug\net7.0\React-AspNetCore.Server.RazorAssemblyInfo.cache
 C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\obj\Debug\net7.0\React-AspNetCore.Server.RazorAssemblyInfo.cs
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\VisualProjects\REACT-ASPNET\React-AspNetCore\React-AspNetCore.Server\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
