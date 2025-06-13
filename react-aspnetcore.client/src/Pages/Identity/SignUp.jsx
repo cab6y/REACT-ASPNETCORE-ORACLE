@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { signUpUser } from '../../../services/identity/userservice';
 
 const SignUp = () => {
     const [form, setForm] = useState({
@@ -20,76 +21,44 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Veritabanýna gitmesini istemediðin alanlar da varsa burada filtrele
-        const payload = {
-            ...form,
-            isDeleted: false, // backend bu alaný istiyorsa
-        };
+        const msg = await signUpUser(form);
+        setMessage(msg);
 
-        try {
-            const response = await fetch('api/User/SignUp', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
+        if (msg === 'Kayýt baþarýlý!') {
+            setForm({
+                name: '',
+                surname: '',
+                username: '',
+                email: '',
+                password: '',
+                telephone: ''
             });
-
-            if (response.ok) {
-                setMessage('Kayýt baþarýlý!');
-                setForm({
-                    name: '',
-                    surname: '',
-                    username: '',
-                    email: '',
-                    password: '',
-                    telephone: '',
-                });
-            } else {
-                const err = await response.json();
-                setMessage(`Hata: ${JSON.stringify(err)}`);
-            }
-        } catch (err) {
-            console.error('Baðlantý hatasý:', err);
-            setMessage('Sunucuya baðlanýlamadý.');
         }
     };
 
     return (
         <div style={{ maxWidth: '500px', margin: 'auto' }}>
-            <h2>Kayýt Ol</h2>
-            <form onSubmit={handleSubmit} className="container mt-5" style={{ maxWidth: '500px' }}>
+            <form onSubmit={handleSubmit} className="container mt-5">
                 <div className="card p-4 shadow">
                     <h3 className="mb-4 text-center">Sign Up</h3>
 
-                    <div className="mb-3">
-                        <input name="name" className="form-control" placeholder="First Name" value={form.name} onChange={handleChange} required />
-                    </div>
-
-                    <div className="mb-3">
-                        <input name="surname" className="form-control" placeholder="Last Name" value={form.surname} onChange={handleChange} required />
-                    </div>
-
-                    <div className="mb-3">
-                        <input name="username" className="form-control" placeholder="Username" value={form.username} onChange={handleChange} required />
-                    </div>
-
-                    <div className="mb-3">
-                        <input name="email" type="email" className="form-control" placeholder="Email Address" value={form.email} onChange={handleChange} required />
-                    </div>
-
-                    <div className="mb-3">
-                        <input name="telephone" className="form-control" placeholder="Phone Number" value={form.telephone} onChange={handleChange} />
-                    </div>
-
-                    <div className="mb-4">
-                        <input name="password" type="password" className="form-control" placeholder="Password" value={form.password} onChange={handleChange} required />
-                    </div>
+                    {['name', 'surname', 'username', 'email', 'telephone', 'password'].map((field, i) => (
+                        <div className="mb-3" key={i}>
+                            <input
+                                type={field === 'email' ? 'email' : field === 'password' ? 'password' : 'text'}
+                                name={field}
+                                className="form-control"
+                                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                                value={form[field]}
+                                onChange={handleChange}
+                                required={field !== 'telephone'}
+                            />
+                        </div>
+                    ))}
 
                     <button type="submit" className="btn btn-primary w-100">Sign Up</button>
                 </div>
             </form>
-
 
             {message && <p style={{ marginTop: 10 }}>{message}</p>}
         </div>

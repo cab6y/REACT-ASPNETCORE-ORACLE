@@ -23,6 +23,9 @@ namespace React_AspNetCore.Server.Controllers.Identity
             {
                 return BadRequest("Invalid user data.");
             }
+            var user = new User{ Id = Guid.NewGuid(), Email = userModel.Email, Name = userModel.Name, Surname = userModel.Surname, Username = userModel.Username, Password = userModel.Password, Telephone = userModel.Telephone, CreatedAt = DateTime.Now };
+            _dbcontext.Users.Add(user);
+            await _dbcontext.SaveChangesAsync();
             // Here you would typically add logic to create a user in your database
             // For example, using _dbcontext to add the user to the database
             return Ok("User created successfully.");
