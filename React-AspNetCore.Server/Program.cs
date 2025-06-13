@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using React_AspNetCore.Server.EFCore;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 
