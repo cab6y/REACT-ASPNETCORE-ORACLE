@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { signUpUser } from '../../../services/identity/userservice';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const [form, setForm] = useState({
@@ -19,13 +20,14 @@ const SignUp = () => {
     };
 
     const handleSubmit = async (e) => {
+        Swal.showLoading();
         e.preventDefault();
 
         const msg = await signUpUser(form);
         setMessage(msg);
 
-        if (msg === 'Kayýt baþarýlý!') {
-            window.Location.href = "/signin"
+        if (msg.toLowerCase().includes("created")) {
+            Swal.fire("Success", "User Created Successfully", 'success');
             setForm({
                 name: '',
                 surname: '',
@@ -35,6 +37,7 @@ const SignUp = () => {
                 telephone: ''
             });
         }
+
     };
 
     return (

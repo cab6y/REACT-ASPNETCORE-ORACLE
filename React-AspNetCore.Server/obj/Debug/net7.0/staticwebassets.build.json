@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "EgmvP9HoKoHcwdRIDcoMQ22Z5B3haOL60AlUIYBwjDg=",
+  "Hash": "XnPbMFOZplE/l93N58bHnEa3TiBmZs9ix/otzdKC8NA=",
   "Source": "React-AspNetCore.Server",
   "BasePath": "_content/React-AspNetCore.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\VisualProjects\\REACT-ASPNET\\React-AspNetCore\\react-aspnetcore.client\\react-aspnetcore.client.esproj",
+      "Identity": "C:\\VisualProjects\\test\\REACT-ASPNETCORE-ORACLE\\react-aspnetcore.client\\react-aspnetcore.client.esproj",
       "Version": 2,
       "Source": "react-aspnetcore.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",

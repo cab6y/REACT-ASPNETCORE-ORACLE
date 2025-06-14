@@ -2,7 +2,7 @@
 "SpaProxyServer": {
 "ServerUrl": "https://localhost:60295",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\VisualProjects\\REACT-ASPNET\\React-AspNetCore\\React-AspNetCore.Server\\..\\react-aspnetcore.client",
+"WorkingDirectory": "C:\\VisualProjects\\test\\REACT-ASPNETCORE-ORACLE\\React-AspNetCore.Server\\..\\react-aspnetcore.client",
 "MaxTimeoutInSeconds": "120"
 }
 }
