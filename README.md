@@ -12,7 +12,7 @@
    npm run dev
    ```
 
-   > React will start on http://localhost:5173
+   > React will start on  https://localhost:60295/
 
 4. In Visual Studio, go to `Tools > NuGet Package Manager > Package Manager Console`.  
    Set the default project to `React-AspNetCore.Server`, then run:
@@ -21,5 +21,5 @@
    Update-Database
    ```
 
-5. Press `F5` in Visual Studio to start the backend (`https://localhost:xxxx`).  
+5. Press `F5` in Visual Studio to start the backend (`https://localhost:7044/`).  
    The backend should connect to the running frontend via proxy if configured.
