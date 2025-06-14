@@ -1,14 +1,25 @@
 # 📝 Setup Instructions
 
-1. First, check the DB connection in `appsettings.json`.
+1. Check the DB connection string inside `React-AspNetCore.Server/appsettings.json`.
 
-2. After that, set the **Default Project** to `React-AspNetCore.Server`.
+2. In Visual Studio, right-click `React-AspNetCore.Server` and select **Set as Startup Project**.
 
-3. Open **Package Manager Console**.
+3. Open terminal and run the following commands to start the React frontend:
 
-4. Set the **default project** as the server-side (`React-AspNetCore.Server`).
+   ```bash
+   cd react-aspnetcore.client
+   npm install
+   npm run dev
+   ```
 
-5. Run the following command to apply migrations:
+   > React will start on http://localhost:5173
+
+4. In Visual Studio, go to `Tools > NuGet Package Manager > Package Manager Console`.  
+   Set the default project to `React-AspNetCore.Server`, then run:
 
    ```powershell
    Update-Database
+   ```
+
+5. Press `F5` in Visual Studio to start the backend (`https://localhost:xxxx`).  
+   The backend should connect to the running frontend via proxy if configured.
