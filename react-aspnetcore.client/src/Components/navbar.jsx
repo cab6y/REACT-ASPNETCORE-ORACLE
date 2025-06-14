@@ -11,13 +11,11 @@ function NavbarComponent() {
         const token = sessionStorage.getItem("token");
 
         if (storedUsername && token) {
-            // Sunucuya session kontrolü için istek at
             checkSession()
                 .then(isValid => {
                     if (isValid) {
                         setUsername(storedUsername);
                     } else {
-                        // Oturum geçersiz, temizle
                         sessionStorage.clear();
                         setUsername(null);
                     }
@@ -31,8 +29,8 @@ function NavbarComponent() {
     }, []);
 
     const handleLogout = async () => {
-        await logout(); // sunucuya logout isteði gönder
-        sessionStorage.clear(); // client tarafýný temizle
+        await logout();
+        sessionStorage.clear();
         window.location.href = "/signin";
     };
 
@@ -51,9 +49,18 @@ function NavbarComponent() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
+                    <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
+                    </Nav>
 
+                    {/* ORTADA USERS */}
+                    {username && (
+                        <Nav className="mx-auto">
+                            <Nav.Link as={Link} to="/users">Users</Nav.Link>
+                        </Nav>
+                    )}
+
+                    <Nav className="ms-auto">
                         {username ? (
                             <NavDropdown title={`Welcome, ${username}`} id="user-nav-dropdown">
                                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using React_AspNetCore.Server.EFCore;
 using React_AspNetCore.Server.Models.Identity;
@@ -22,7 +23,7 @@ namespace React_AspNetCore.Server.Controllers.Identity
 
         [HttpPost]
         [Route("SignUp")]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUser userModel)
+        public async Task<IActionResult> SignUp([FromBody] CreateUser userModel)
         {
             if (userModel == null || string.IsNullOrEmpty(userModel.Username) || string.IsNullOrEmpty(userModel.Password))
             {
@@ -93,6 +94,37 @@ namespace React_AspNetCore.Server.Controllers.Identity
             {
                 return StatusCode(500, $"Çıkış hatası: {ex.Message}");
             }
+        }
+        [HttpGet("List")]
+        [Authorize]
+        public async Task<IActionResult> GetUsers([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            if (page <= 0) page = 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            var query = _dbcontext.Users.OrderByDescending(u => u.CreatedAt); // sıralama opsiyonel
+
+            var totalCount = await query.CountAsync();
+            var users = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var result = new PagedResult<User>
+            {
+                TotalCount = totalCount,
+                Items = users
+            };
+
+            return Ok(result);
+        }
+        [HttpDelete("Delete")]
+        [Authorize]
+        public async Task<IActionResult> Delete(Guid Id)
+        {
+           await _dbcontext.Users.Where(u => u.Id == Id).ExecuteDeleteAsync();
+
+            return Ok();
         }
     }
 }

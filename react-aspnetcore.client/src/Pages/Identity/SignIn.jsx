@@ -1,5 +1,6 @@
 ﻿import React, { useState } from "react";
 import { signIn } from "../../../services/identity/userservice";
+import Swal from 'sweetalert2';
 
 const SignIn = () => {
     const [form, setForm] = useState({ email: "", password: "" });
@@ -13,16 +14,19 @@ const SignIn = () => {
     }
 
     const handleSubmit = async (e) => {
+        Swal.showLoading();
         e.preventDefault();
         setError("");
 
         const result = await signIn(form.email, form.password);
 
         if (result) {
+            Swal.hideLoading();
             sessionStorage.setItem("token", result.token);
             sessionStorage.setItem("username", form.email);
             window.location.href = "/";
         } else {
+            Swal.fire("Error", "Please Check Email Or Pw", error);
             setError("Login failed! Please check your credentials.");
         }
     };

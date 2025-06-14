@@ -13,7 +13,7 @@ namespace React_AspNetCore.Server.EFCore
                 .Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            optionsBuilder.UseOracle(config.GetConnectionString("Default"));
+            optionsBuilder.UseOracle(config.GetConnectionString("DefaultConnection"));
 
             // Interceptor olmadan context oluşturuluyor
             return new ApplicationDbContext(optionsBuilder.Options, new SoftDeleteInterceptor());

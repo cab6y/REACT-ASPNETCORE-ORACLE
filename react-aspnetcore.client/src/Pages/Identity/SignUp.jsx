@@ -25,6 +25,7 @@ const SignUp = () => {
         setMessage(msg);
 
         if (msg === 'Kayýt baþarýlý!') {
+            window.Location.href = "/signin"
             setForm({
                 name: '',
                 surname: '',
