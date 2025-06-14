@@ -11800,11 +11800,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\VisualProjects\\REACT-ASPNET\\React-AspNetCore\\React-AspNetCore.Server\\React-AspNetCore.Server.csproj",
+      "projectUniqueName": "C:\\VisualProjects\\test\\REACT-ASPNETCORE-ORACLE\\React-AspNetCore.Server\\React-AspNetCore.Server.csproj",
       "projectName": "React-AspNetCore.Server",
-      "projectPath": "C:\\VisualProjects\\REACT-ASPNET\\React-AspNetCore\\React-AspNetCore.Server\\React-AspNetCore.Server.csproj",
+      "projectPath": "C:\\VisualProjects\\test\\REACT-ASPNETCORE-ORACLE\\React-AspNetCore.Server\\React-AspNetCore.Server.csproj",
       "packagesPath": "C:\\Users\\cihan.abay\\.nuget\\packages\\",
-      "outputPath": "C:\\VisualProjects\\REACT-ASPNET\\React-AspNetCore\\React-AspNetCore.Server\\obj\\",
+      "outputPath": "C:\\VisualProjects\\test\\REACT-ASPNETCORE-ORACLE\\React-AspNetCore.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,1 +1,2 @@
 C:\VisualProjects\REACT-ASPNET\React-AspNetCore\react-aspnetcore.client\obj\Debug\react-aspnetcore.client.esproj.CoreCompileInputs.cache
+C:\VisualProjects\test\REACT-ASPNETCORE-ORACLE\react-aspnetcore.client\obj\Debug\react-aspnetcore.client.esproj.CoreCompileInputs.cache
