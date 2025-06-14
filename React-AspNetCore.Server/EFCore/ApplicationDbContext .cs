@@ -5,9 +5,12 @@ namespace React_AspNetCore.Server.EFCore
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        private readonly SoftDeleteInterceptor _softDeleteInterceptor;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, SoftDeleteInterceptor softDeleteInterceptor)
             : base(options)
         {
+            _softDeleteInterceptor = softDeleteInterceptor;
         }
         public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

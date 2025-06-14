@@ -1,6 +1,8 @@
-﻿namespace React_AspNetCore.Server.Models.Identity
+﻿using React_AspNetCore.Server.EFCore;
+
+namespace React_AspNetCore.Server.Models.Identity
 {
-    public class User : BaseModel
+    public class User : BaseModel, ISoftDeletable
     {
         public User()
         {

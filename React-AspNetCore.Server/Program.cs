@@ -6,6 +6,7 @@ using React_AspNetCore.Server.EFCore;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<SoftDeleteInterceptor>();
 
 // DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
