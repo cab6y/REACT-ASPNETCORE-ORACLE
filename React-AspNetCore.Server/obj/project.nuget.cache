@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1zNd21sij3c=",
+  "dgSpecHash": "karsb0q/XZ8=",
   "success": true,
-  "projectFilePath": "C:\\VisualProjects\\test\\REACT-ASPNETCORE-ORACLE\\React-AspNetCore.Server\\React-AspNetCore.Server.csproj",
+  "projectFilePath": "C:\\VisualProjects\\REACT-ASPNET\\React-AspNetCore\\React-AspNetCore.Server\\React-AspNetCore.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cihan.abay\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\cihan.abay\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
