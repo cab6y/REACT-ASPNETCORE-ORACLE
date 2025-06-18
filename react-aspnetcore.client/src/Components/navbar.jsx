@@ -57,6 +57,7 @@ function NavbarComponent() {
                     {username && (
                         <Nav className="mx-auto">
                             <Nav.Link as={Link} to="/users">Users</Nav.Link>
+                            <Nav.Link as={Link} to="/todos">Todos</Nav.Link>
                         </Nav>
                     )}
 

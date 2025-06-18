@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using React_AspNetCore.Server.EFCore;
+using React_AspNetCore.Server.Models;
 using React_AspNetCore.Server.Models.Identity;
 using System.Security.Claims;
 using System.Text;

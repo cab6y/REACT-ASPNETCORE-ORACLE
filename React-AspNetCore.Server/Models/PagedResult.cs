@@ -1,4 +1,4 @@
-﻿namespace React_AspNetCore.Server.Models.Identity
+﻿namespace React_AspNetCore.Server.Models
 {
     public class PagedResult<T>
     {

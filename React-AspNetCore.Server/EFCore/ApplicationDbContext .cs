@@ -16,6 +16,7 @@ namespace React_AspNetCore.Server.EFCore
         }
         public DbSet<User> Users { get; set; }
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<TodoHeader> TodoHeaders { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
