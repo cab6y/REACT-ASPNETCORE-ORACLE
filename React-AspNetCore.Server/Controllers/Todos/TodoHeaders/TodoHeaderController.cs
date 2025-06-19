@@ -85,14 +85,10 @@ namespace React_AspNetCore.Server.Controllers.Todos.TodoHeaders
         [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var existing = await _dbcontext.TodoHeaders
-                .Include(h => h.TodoItems) // ilişkili TodoItem'lar varsa onları da al
-                .FirstOrDefaultAsync(h => h.Id == id);
+            var todo = await _dbcontext.TodoHeaders.FindAsync(id);
+            _dbcontext.TodoHeaders.Remove(todo);
+            Console.WriteLine($"State: {_dbcontext.Entry(todo).State}");
 
-            if (existing == null)
-                return NotFound("Silinecek kayıt bulunamadı.");
-
-            _dbcontext.TodoHeaders.Remove(existing);
             await _dbcontext.SaveChangesAsync();
 
             return Ok("Başarıyla silindi.");

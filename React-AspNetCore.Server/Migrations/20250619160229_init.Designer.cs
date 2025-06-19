@@ -12,8 +12,8 @@ using React_AspNetCore.Server.EFCore;
 namespace React_AspNetCore.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250618162650_Todos")]
-    partial class Todos
+    [Migration("20250619160229_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,6 +91,9 @@ namespace React_AspNetCore.Server.Migrations
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("NUMBER(1)");
+
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("TIMESTAMP(7)");
 
@@ -104,11 +107,9 @@ namespace React_AspNetCore.Server.Migrations
 
             modelBuilder.Entity("React_AspNetCore.Server.Models.TodoItems.TodoItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
-
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("RAW(16)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("TIMESTAMP(7)");
@@ -121,6 +122,9 @@ namespace React_AspNetCore.Server.Migrations
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<bool>("IsCompleted")
+                        .HasColumnType("NUMBER(1)");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<DateTime?>("ModifiedAt")
@@ -144,7 +148,7 @@ namespace React_AspNetCore.Server.Migrations
                     b.HasOne("React_AspNetCore.Server.Models.TodoHeaders.TodoHeader", "TodoHeader")
                         .WithMany("TodoItems")
                         .HasForeignKey("TodoHeaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("TodoHeader");

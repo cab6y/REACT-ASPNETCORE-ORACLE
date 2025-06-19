@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace React_AspNetCore.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Todos : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,6 +17,7 @@ namespace React_AspNetCore.Server.Migrations
                 {
                     Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     Header = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
                     CreatorId = table.Column<Guid>(type: "RAW(16)", nullable: true),
                     ModifierId = table.Column<Guid>(type: "RAW(16)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
@@ -28,13 +29,35 @@ namespace React_AspNetCore.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Surname = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Username = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Password = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Telephone = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Email = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "RAW(16)", nullable: true),
+                    ModifierId = table.Column<Guid>(type: "RAW(16)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
+                    ModifiedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TodoItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     Description = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     IsCompleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
                     TodoHeaderId = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     CreatorId = table.Column<Guid>(type: "RAW(16)", nullable: true),
                     ModifierId = table.Column<Guid>(type: "RAW(16)", nullable: true),
@@ -49,7 +72,7 @@ namespace React_AspNetCore.Server.Migrations
                         column: x => x.TodoHeaderId,
                         principalTable: "TodoHeaders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -63,6 +86,9 @@ namespace React_AspNetCore.Server.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TodoItems");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "TodoHeaders");

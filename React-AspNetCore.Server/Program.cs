@@ -1,18 +1,23 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+ï»¿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using React_AspNetCore.Server.EFCore;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<SoftDeleteInterceptor>();
+builder.Services.AddScoped<ISaveChangesInterceptor, SoftDeleteInterceptor>();
 
-// DbContext
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
+{
+    var interceptor = serviceProvider.GetRequiredService<ISaveChangesInterceptor>();
+    options
+        .UseOracle(builder.Configuration.GetConnectionString("DefaultConnection"))
+        .AddInterceptors(interceptor); // âœ…
+});
 
-// CORS tanýmý
+// CORS tanÄ±mÄ±
 var corsPolicyName = "AllowFrontend";
 builder.Services.AddCors(options =>
 {
@@ -24,9 +29,9 @@ builder.Services.AddCors(options =>
               .AllowCredentials();
     });
 });
-builder.Services.AddDistributedMemoryCache(); // Session için zorunlu
+builder.Services.AddDistributedMemoryCache(); // Session iÃ§in zorunlu
 
-// Session tanýmý
+// Session tanÄ±mÄ±
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -84,13 +89,13 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Diðer servisler
+// DiÄŸer servisler
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-// Middleware sýralamasý ÖNEMLÝ
+// Middleware sÄ±ralamasÄ± Ã–NEMLÄ°
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -104,7 +109,7 @@ app.UseRouting();
 
 app.UseSession(); // Session
 app.UseCors(corsPolicyName); // CORS
-app.UseAuthentication(); // JWT doðrulama
+app.UseAuthentication(); // JWT doÄŸrulama
 app.UseAuthorization(); // Yetki kontrol
 
 app.MapControllers();

@@ -104,11 +104,9 @@ namespace React_AspNetCore.Server.Migrations
 
             modelBuilder.Entity("React_AspNetCore.Server.Models.TodoItems.TodoItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
-
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("RAW(16)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("TIMESTAMP(7)");
@@ -147,7 +145,7 @@ namespace React_AspNetCore.Server.Migrations
                     b.HasOne("React_AspNetCore.Server.Models.TodoHeaders.TodoHeader", "TodoHeader")
                         .WithMany("TodoItems")
                         .HasForeignKey("TodoHeaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("TodoHeader");
